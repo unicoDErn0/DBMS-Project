@@ -1,7 +1,7 @@
-package dev.praneeth.backend.user;
+package dev.praneeth.backend.Billing;
 
 import java.util.List;
-import java.util.Optional;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import org.springframework.stereotype.Service;
@@ -39,38 +39,39 @@ public class BillingService {
 
     // Update an existing billing record
     @Transactional
-    public void updateBilling(Integer billingId, BillingUpdateRequest updateRequest) {
-        // Retrieve the billing record or throw an exception if not found
-        Billing billing = billingRepository.findById(billingId)
-                .orElseThrow(() -> new IllegalStateException("Billing with id " + billingId + " does not exist"));
+public void updateBilling(Integer billingId, BillingUpdateRequest updateRequest) {
+    // Retrieve the billing record or throw an exception if not found
+    Billing billing = billingRepository.findById(billingId)
+            .orElseThrow(() -> new IllegalStateException("Billing with id " + billingId + " does not exist"));
 
-        // Update totalAmount if it's valid
-        if (updateRequest.getTotalAmount() != null && updateRequest.getTotalAmount() > 0) {
-            billing.setTotalAmount(updateRequest.getTotalAmount());
-        }
-
-        // Update patientPayableAmount if it's valid
-        if (updateRequest.getPatientPayableAmount() != null && updateRequest.getPatientPayableAmount() > 0) {
-            billing.setPatientPayableAmount(updateRequest.getPatientPayableAmount());
-        }
-
-        // Update billingDate if it's valid
-        if (updateRequest.getBillingDate() != null) {
-            LocalDate billingDate = updateRequest.getBillingDate();
-            billing.setBillingDate(billingDate);
-        }
-
-        // Update serviceID if it's valid
-        if (updateRequest.getServiceID() != null && updateRequest.getServiceID() > 0) {
-            billing.setServiceID(updateRequest.getServiceID());
-        }
-
-        // Update status if it's valid
-        if (updateRequest.getStatus() != null) {
-            billing.setStatus(updateRequest.getStatus());
-        }
-
-        // Save the updated billing entity
-        billingRepository.save(billing);
+    // Update totalAmount if it's valid
+    if (updateRequest.getTotalAmount() != null && updateRequest.getTotalAmount().compareTo(BigDecimal.ZERO) > 0) {
+        billing.setTotalAmount(updateRequest.getTotalAmount());
     }
+
+    // Update patientPayableAmount if it's valid
+    if (updateRequest.getPatientPayableAmount() != null && updateRequest.getPatientPayableAmount().compareTo(BigDecimal.ZERO) > 0) {
+        billing.setPatientPayableAmount(updateRequest.getPatientPayableAmount());
+    }
+
+    // Update billingDate if it's valid
+    if (updateRequest.getBillingDate() != null) {
+        LocalDate billingDate = updateRequest.getBillingDate();
+        billing.setBillingDate(billingDate);
+    }
+
+    // Update serviceID if it's valid
+    if (updateRequest.getServiceID() != null && updateRequest.getServiceID() > 0) {
+        billing.setServiceID(updateRequest.getServiceID());
+    }
+
+    // Update status if it's valid
+    if (updateRequest.getStatus() != null) {
+        billing.setStatus(updateRequest.getStatus());
+    }
+
+    // Save the updated billing entity
+    billingRepository.save(billing);
+}
+
 }

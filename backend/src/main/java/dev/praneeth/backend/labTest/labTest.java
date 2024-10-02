@@ -1,10 +1,10 @@
-package dev.praneeth.backend.user;
+package dev.praneeth.backend.labTest;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "lab_tests")
-public class LabTest {
+public class labTest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +23,9 @@ public class LabTest {
     private String units;
 
     // Constructors
-    public LabTest() {}
+    public labTest() {}
 
-    public LabTest(String nameOfTest, String description, String normalRange, String units) {
+    public labTest(String nameOfTest, String description, String normalRange, String units) {
         this.nameOfTest = nameOfTest;
         this.description = description;
         this.normalRange = normalRange;
@@ -33,11 +33,11 @@ public class LabTest {
     }
 
     // Getters and Setters
-    public Integer getLabTestID() {
+    public Integer getlabTestID() {
         return labTestID;
     }
 
-    public void setLabTestID(Integer labTestID) {
+    public void setlabTestID(Integer labTestID) {
         this.labTestID = labTestID;
     }
 

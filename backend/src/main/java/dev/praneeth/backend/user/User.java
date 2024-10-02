@@ -2,7 +2,6 @@ package dev.praneeth.backend.user;
 
 import java.time.LocalDate;
 import java.time.Period;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -34,8 +33,11 @@ public class User {
     @Column(name = "phone_number", length = 20)
     private String phone_number;
 
-    @Column(name = "email", length = 50)
+    @Column(name = "email", length = 50, unique = true)
     private String email;
+
+    @Column(name = "password", nullable = false)
+    private String password;
 
     // Enum for gender
     public enum Gender {
@@ -47,7 +49,7 @@ public class User {
     // Constructors
     public User() {}
 
-    public User(String firstName, String lastName, LocalDate dob, Gender gender, String address, String phone_number, String email) {
+    public User(String firstName, String lastName, LocalDate dob, Gender gender, String address, String phone_number, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
@@ -55,6 +57,7 @@ public class User {
         this.address = address;
         this.phone_number = phone_number;
         this.email = email;
+        this.password = password;
     }
 
     // Getters and Setters
@@ -126,6 +129,14 @@ public class User {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -133,11 +144,12 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dob=" + dob +
-                ", age=" + getAge() +  // Make sure to use the calculated age
+                ", age=" + getAge() +
                 ", gender=" + gender +
                 ", address='" + address + '\'' +
                 ", phone_number='" + phone_number + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

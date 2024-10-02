@@ -19,6 +19,8 @@ public class UserUpdateRequest {
     private String address;
     private String phone_number;
     private String email;
+    private String password;
+
 
 
     // Getters and setters
@@ -85,6 +87,14 @@ public class UserUpdateRequest {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

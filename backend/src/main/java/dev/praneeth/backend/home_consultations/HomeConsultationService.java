@@ -2,7 +2,6 @@ package dev.praneeth.backend.home_consultations;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,7 +9,6 @@ public class HomeConsultationService {
 
     private final HomeConsultationRepository homeConsultationRepository;
 
-    @Autowired
     public HomeConsultationService(HomeConsultationRepository homeConsultationRepository) {
         this.homeConsultationRepository = homeConsultationRepository;
     }

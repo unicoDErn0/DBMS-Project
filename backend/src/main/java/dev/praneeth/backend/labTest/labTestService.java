@@ -1,30 +1,29 @@
-package dev.praneeth.backend.user;
+package dev.praneeth.backend.labTest;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 
 @Service
-public class LabTestService {
+public class labTestService {
 
-    private final LabTestRepository labTestRepository;
+    private final labTestRepository labTestRepository;
 
-    public LabTestService(LabTestRepository labTestRepository) {
+    public labTestService(labTestRepository labTestRepository) {
         this.labTestRepository = labTestRepository;
     }
 
-    public List<LabTest> getLabTests() {
+    public List<labTest> getlabTests() {
         return labTestRepository.findAll();
     }
 
-    public void addLabTest(LabTest labTest) {
+    public void addlabTest(labTest labTest) {
         labTestRepository.save(labTest);
     }
 
-    public void deleteLabTest(Integer labTestId) {
+    public void deletelabTest(Integer labTestId) {
         boolean exists = labTestRepository.existsById(labTestId);
         if (!exists) {
             throw new IllegalStateException("Lab test with id " + labTestId + " does not exist");
@@ -33,8 +32,8 @@ public class LabTestService {
     }
 
     @Transactional
-    public void updateLabTest(Integer labTestId, LabTestUpdateRequest updateRequest) {
-        LabTest labTest = labTestRepository.findById(labTestId)
+    public void updatelabTest(Integer labTestId, labTestUpdateRequest updateRequest) {
+        labTest labTest = labTestRepository.findById(labTestId)
                 .orElseThrow(() -> new IllegalStateException("Lab test with id " + labTestId + " does not exist"));
 
         if (updateRequest.getNameOfTest() != null && !updateRequest.getNameOfTest().trim().isEmpty()) {
