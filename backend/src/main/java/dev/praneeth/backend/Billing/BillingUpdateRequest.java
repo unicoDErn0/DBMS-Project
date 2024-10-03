@@ -1,8 +1,8 @@
-package dev.praneeth.backend.user;
+package dev.praneeth.backend.Billing;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import dev.praneeth.backend.user.Billing.Status;
+import dev.praneeth.backend.Billing.Billing.Status;
 
 
 // gotta check whether all actions are allowed or not

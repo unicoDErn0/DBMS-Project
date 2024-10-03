@@ -1,7 +1,7 @@
-package dev.praneeth.backend.user;
+package dev.praneeth.backend.Billing;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.Period;
 
 import jakarta.persistence.*;
 
@@ -14,10 +14,10 @@ public class Billing {
     private Integer billingID;
 
     @Column(name = "total_amount", nullable = true, precision = 10, scale = 2)
-    private Double totalAmount;
+    private BigDecimal totalAmount;
 
     @Column(name = "patient_payable_amount", nullable = true, precision = 10, scale = 2)
-    private Double patientPayableAmount;
+    private BigDecimal patientPayableAmount;
 
     @Column(name = "billing_date", nullable = false)
     private LocalDate billingDate;
@@ -41,7 +41,7 @@ public class Billing {
     // Constructors
     public Billing() {}
 
-    public Billing(Double totalAmount, Double patientPayableAmount, LocalDate billingDate, Integer serviceID, Status status) {
+    public Billing(BigDecimal totalAmount, BigDecimal patientPayableAmount, LocalDate billingDate, Integer serviceID, Status status) {
         this.totalAmount = totalAmount;
         this.patientPayableAmount = patientPayableAmount;
         this.billingDate = billingDate;
@@ -59,19 +59,19 @@ public class Billing {
         this.billingID = billingID;
     }
 
-    public Double getTotalAmount() {
+    public BigDecimal getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(Double totalAmount) {
+    public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
 
-    public Double getPatientPayableAmount() {
+    public BigDecimal getPatientPayableAmount() {
         return patientPayableAmount;
     }
 
-    public void setPatientPayableAmount(Double patientPayableAmount) {
+    public void setPatientPayableAmount(BigDecimal patientPayableAmount) {
         this.patientPayableAmount = patientPayableAmount;
     }
 

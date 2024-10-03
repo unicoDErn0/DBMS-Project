@@ -6,17 +6,19 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 import org.springframework.stereotype.Service;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import jakarta.transaction.Transactional;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    // @Autowired is optional here, Spring will inject automatically
-    public UserService(UserRepository userRepository) {
+
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<User> GetUsers() {
@@ -28,6 +30,10 @@ public class UserService {
         if (userOptional.isPresent()) {
             throw new IllegalStateException("Email already taken");
         }
+
+        // Hash the password before saving the user
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         userRepository.save(user);
     }
 
@@ -87,6 +93,11 @@ public class UserService {
                 throw new IllegalStateException("Email already taken");
             }
             user.setEmail(updateRequest.getEmail());
+        }
+
+        // If password is provided, hash it before saving
+        if (updateRequest.getPassword() != null && !updateRequest.getPassword().trim().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(updateRequest.getPassword()));
         }
 
         // Save the updated user entity

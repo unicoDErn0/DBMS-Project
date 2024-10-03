@@ -1,6 +1,6 @@
-package dev.praneeth.backend.user;
+package dev.praneeth.backend.labTest;
 
-public class LabTestUpdateRequest {
+public class labTestUpdateRequest {
 
     private String nameOfTest;
     private String description;
