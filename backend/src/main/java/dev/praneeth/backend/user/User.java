@@ -2,41 +2,18 @@ package dev.praneeth.backend.user;
 
 import java.time.LocalDate;
 import java.time.Period;
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "users")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer patientID;
-
-    @Column(name = "first_name", nullable = false, length = 20)
     private String firstName;
-
-    @Column(name = "last_name", nullable = false, length = 20)
     private String lastName;
-
-    @Column(name = "dob", nullable = false)
     private LocalDate dob;
-
-    @Transient
+    @SuppressWarnings("unused")
     private Integer age;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gender", nullable = false)
     private Gender gender;
-
-    @Column(name = "address", length = 255)
     private String address;
-
-    @Column(name = "phone_number", length = 20)
     private String phone_number;
-
-    @Column(name = "email", length = 50, unique = true)
     private String email;
-
-    @Column(name = "password", nullable = false)
     private String password;
 
     // Enum for gender
@@ -49,7 +26,8 @@ public class User {
     // Constructors
     public User() {}
 
-    public User(String firstName, String lastName, LocalDate dob, Gender gender, String address, String phone_number, String email, String password) {
+    public User(Integer patientID, String firstName, String lastName, LocalDate dob, Gender gender, String address, String phone_number, String email, String password) {
+        this.patientID = patientID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;

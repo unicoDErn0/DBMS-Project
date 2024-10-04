@@ -1,4 +1,4 @@
-package dev.praneeth.backend.user;
+package dev.praneeth.backend.Prescription;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;

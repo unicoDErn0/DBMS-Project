@@ -1,7 +1,6 @@
-package dev.praneeth.backend.user;
+package dev.praneeth.backend.Diagnosis;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 

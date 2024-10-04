@@ -120,7 +120,7 @@ const SignUp = () => {
       </div>
       <div className="relative w-full items-center justify-center text-center styles.black-area z-0 mt-28">
         <h1 className="font-extrabold text-4xl sm:text-5xl lg:text-[80px] tracking-tight text-center text-white">Welcome to Atermis</h1>
-        <p className="mt-6 text-3xl text-center max-w-3xl lg:block hidden mx-auto text-white ">Embark on a cinematic journey like never before. Join our vibrant community of movie enthusiasts where every frame sparks discussions, memories, and inspiration. Sign up today to explore the world of cinema with fellow aficionados and dive into a realm where every movie holds a story worth sharing.</p>
+        <p className="mt-6 text-3xl text-center max-w-3xl lg:block hidden mx-auto text-white ">Step into a world of seamless healthcare management with our state-of-the-art hospital platform. Join a thriving community of patients, doctors, and staff where efficiency meets compassion. Sign up today to experience personalized care, book appointments, access medical records, and stay connected with your healthcare team. Your health journey begins here, and we’re with you every step of the way.</p>
         <div className="relative flex items-center justify-center mt-12">
           <Link to="/">
             <button className="bg-black text-white text-2xl px-8 py-3 rounded-full hover:bg-white hover:text-black transition duration-300">Explore</button>

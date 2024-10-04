@@ -1,4 +1,4 @@
-package dev.praneeth.backend.medicine;
+package dev.praneeth.backend.Medicine;
 
 public class MedicineUpdateRequest {
 
