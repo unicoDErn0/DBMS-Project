@@ -1,4 +1,4 @@
-package dev.praneeth.backend.user;
+package dev.praneeth.backend.Diagnosis;
 
 // import java.util.List;
 

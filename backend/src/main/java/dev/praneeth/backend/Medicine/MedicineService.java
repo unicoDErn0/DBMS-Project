@@ -1,4 +1,4 @@
-package dev.praneeth.backend.medicine;
+package dev.praneeth.backend.Medicine;
 
 import java.util.List;
 import org.springframework.stereotype.Service;

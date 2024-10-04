@@ -1,4 +1,4 @@
-package dev.praneeth.backend.prescription;
+package dev.praneeth.backend.Prescription;
 
 import java.time.LocalDate;
 

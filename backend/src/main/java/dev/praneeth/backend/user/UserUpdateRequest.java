@@ -1,27 +1,17 @@
 package dev.praneeth.backend.user;
 
-import java.time.LocalDate;
-import java.time.Period;
-
 import dev.praneeth.backend.user.User.Gender;
-
-import jakarta.persistence.*;
 
 public class UserUpdateRequest {
     
     private String firstName;
     private String lastName;
-    private String dob;
-
-    @Transient
-    private Integer age;
+    private String dob; // Keep this for input
     private Gender gender;
     private String address;
     private String phone_number;
     private String email;
     private String password;
-
-
 
     // Getters and setters
     public String getFirstName() {
@@ -48,14 +38,7 @@ public class UserUpdateRequest {
         this.dob = dob;
     }
 
-    public Integer getAge() {
-        LocalDate parsedDob = LocalDate.parse(this.dob);
-        return Period.between(parsedDob, LocalDate.now()).getYears();
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+    // Remove the age field and its setter/getter
 
     public Gender getGender() {
         return gender;
@@ -97,4 +80,3 @@ public class UserUpdateRequest {
         this.password = password;
     }
 }
-

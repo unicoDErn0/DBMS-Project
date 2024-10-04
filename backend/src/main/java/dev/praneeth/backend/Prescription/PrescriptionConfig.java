@@ -1,4 +1,4 @@
-package dev.praneeth.backend.user;
+package dev.praneeth.backend.Prescription;
 
 // import java.time.LocalDate;
 // import java.util.List;

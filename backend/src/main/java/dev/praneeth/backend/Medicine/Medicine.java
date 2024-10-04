@@ -1,4 +1,4 @@
-package dev.praneeth.backend.user;
+package dev.praneeth.backend.Medicine;
 
 import jakarta.persistence.*;
 

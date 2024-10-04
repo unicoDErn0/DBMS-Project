@@ -7,26 +7,26 @@ import java.time.format.DateTimeParseException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
+    private final UserDao userDao;
     private final BCryptPasswordEncoder passwordEncoder;
 
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
+    public UserService(UserDao userDao, BCryptPasswordEncoder passwordEncoder) {
+        this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
     }
 
     public List<User> GetUsers() {
-        return userRepository.findAll();
+        return userDao.getAllUsers();
     }
 
     public void AddUser(User user) {
-        Optional<User> userOptional = userRepository.findByEmail(user.getEmail());
+        Optional<User> userOptional = userDao.getUserByEmail(user.getEmail());
         if (userOptional.isPresent()) {
             throw new IllegalStateException("Email already taken");
         }
@@ -34,21 +34,21 @@ public class UserService {
         // Hash the password before saving the user
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        userRepository.save(user);
+        userDao.addUser(user);
     }
 
     public void DeleteUser(Integer userId) {
-        boolean exists = userRepository.existsById(userId);
+        boolean exists = userDao.getUserById(userId).isPresent();
         if (!exists) {
             throw new IllegalStateException("User with id " + userId + " does not exist");
         }
-        userRepository.deleteById(userId);
+        userDao.deleteUser(userId);
     }
 
     @Transactional
     public void updateUser(Integer userId, UserUpdateRequest updateRequest) {
         // Retrieve the user or throw an exception if not found
-        User user = userRepository.findById(userId)
+        User user = userDao.getUserById(userId)
                 .orElseThrow(() -> new IllegalStateException("User with id " + userId + " does not exist"));
 
         // Update firstName if it's valid
@@ -88,7 +88,7 @@ public class UserService {
 
         // Check for duplicate email before updating
         if (updateRequest.getEmail() != null && !updateRequest.getEmail().trim().isEmpty()) {
-            Optional<User> userWithEmail = userRepository.findByEmail(updateRequest.getEmail());
+            Optional<User> userWithEmail = userDao.getUserByEmail(updateRequest.getEmail());
             if (userWithEmail.isPresent() && !userWithEmail.get().getPatientID().equals(userId)) {
                 throw new IllegalStateException("Email already taken");
             }
@@ -101,6 +101,6 @@ public class UserService {
         }
 
         // Save the updated user entity
-        userRepository.save(user);
+        userDao.addUser(user);
     }
 }
