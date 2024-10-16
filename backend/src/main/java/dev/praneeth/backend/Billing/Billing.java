@@ -3,39 +3,19 @@ package dev.praneeth.backend.Billing;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "billing")
 public class Billing {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer billingID;
-
-    @Column(name = "total_amount", nullable = true, precision = 10, scale = 2)
     private BigDecimal totalAmount;
-
-    @Column(name = "patient_payable_amount", nullable = true, precision = 10, scale = 2)
     private BigDecimal patientPayableAmount;
-
-    @Column(name = "billing_date", nullable = false)
     private LocalDate billingDate;
-
-    // dueDate will be 2 weeks from billingDate
-    @Transient
     private LocalDate dueDate;
-
-    @Column(name = "service_ID", nullable = false)
     private Integer serviceID;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
     private Status status;
 
-    // Enum for payment status
     public enum Status {
-        PAID, UNPAID, PENDING
+        PAID,
+        UNPAID,
+        PARTIALLY_PAID
     }
 
     // Constructors
@@ -45,9 +25,9 @@ public class Billing {
         this.totalAmount = totalAmount;
         this.patientPayableAmount = patientPayableAmount;
         this.billingDate = billingDate;
+        this.dueDate = billingDate.plusWeeks(2);
         this.serviceID = serviceID;
         this.status = status;
-        this.dueDate = billingDate.plusWeeks(2);  // Set due date to 2 weeks from billing date
     }
 
     // Getters and Setters
@@ -87,6 +67,10 @@ public class Billing {
         return dueDate;
     }
 
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
     public Integer getServiceID() {
         return serviceID;
     }
@@ -116,3 +100,4 @@ public class Billing {
                 '}';
     }
 }
+
