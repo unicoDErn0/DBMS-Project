@@ -1,28 +1,11 @@
 package dev.praneeth.backend.nurse;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "nurses")
 public class Nurse {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer nurseID;
-
-    @Column(name = "first_name", nullable = false, length = 50)
     private String firstName;
-
-    @Column(name = "last_name", nullable = false, length = 50)
     private String lastName;
-
-    @Column(name = "phone_number", length = 15)
     private String phone_number;
-
-    @Column(name = "email", length = 100)
     private String email;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "shift", nullable = false)
     private Shift shift;
 
     public enum Shift {

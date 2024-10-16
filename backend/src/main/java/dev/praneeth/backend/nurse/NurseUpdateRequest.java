@@ -1,14 +1,18 @@
-package dev.praneeth.backend.nurse;
+package dev.praneeth.backend.user;
 
-public class NurseUpdateRequest {
+import dev.praneeth.backend.user.User.Gender;
 
+public class UserUpdateRequest {
+    
     private String firstName;
     private String lastName;
+    private String dob; 
+    private Gender gender;
+    private String address;
+    private String phone_number;
     private String email;
-    private String phoneNumber;
-    private String department;
+    private String password;
 
-    // Getters and Setters
     public String getFirstName() {
         return firstName;
     }
@@ -25,6 +29,40 @@ public class NurseUpdateRequest {
         this.lastName = lastName;
     }
 
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    // Remove the age field and its setter/getter
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -33,19 +71,11 @@ public class NurseUpdateRequest {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

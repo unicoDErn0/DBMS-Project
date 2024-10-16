@@ -11,11 +11,18 @@ import org.springframework.context.annotation.Configuration;
 public class AppointmentConfig {
 
     // @Bean
-    // CommandLineRunner commandLineRunner(AppointmentRepository appointmentRepository) {
+    // CommandLineRunner commandLineRunner(AppointmentDao appointmentDao) {
     //     return args -> {
-    //         Appointment appointment1 = new Appointment(LocalDate.of(2023, 9, 23), LocalTime.of(10, 0), Appointment.Status.Scheduled, 1, 1, 1);
+    //         Appointment appointment1 = new Appointment(
+    //             LocalDate.of(2023, 9, 23),
+    //             LocalTime.of(10, 0),
+    //             Appointment.Status.Scheduled,
+    //             1, // diagnosisID
+    //             1, // doctorID
+    //             1  // patientID
+    //         );
 
-    //         appointmentRepository.saveAll(List.of(appointment1));
+    //         appointmentDao.addAppointment(appointment1);
     //     };
     // }
 }

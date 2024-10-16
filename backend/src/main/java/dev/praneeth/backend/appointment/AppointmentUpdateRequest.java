@@ -3,10 +3,11 @@ package dev.praneeth.backend.appointment;
 import java.time.LocalDateTime;
 
 public class AppointmentUpdateRequest {
+
     private Integer appointmentId;
     private Integer doctorId;
     private Integer patientId;
-    private LocalDateTime dateTime;
+    private LocalDateTime dateTime; // Changed to LocalDateTime for better date-time handling
     private String status;
 
     // Getters and Setters
