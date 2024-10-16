@@ -2,19 +2,15 @@ package dev.praneeth.backend.Billing;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import dev.praneeth.backend.Billing.Billing.Status;
 
-
-// gotta check whether all actions are allowed or not
 public class BillingUpdateRequest {
-
+    
     private BigDecimal totalAmount;
     private BigDecimal patientPayableAmount;
     private LocalDate billingDate;
-    private Integer serviceID;
-    private Status status;
+    private LocalDate dueDate;
+    private Billing.Status status;
 
-    // Getters and setters
     public BigDecimal getTotalAmount() {
         return totalAmount;
     }
@@ -39,19 +35,19 @@ public class BillingUpdateRequest {
         this.billingDate = billingDate;
     }
 
-    public Integer getServiceID() {
-        return serviceID;
+    public LocalDate getDueDate() {
+        return dueDate;
     }
 
-    public void setServiceID(Integer serviceID) {
-        this.serviceID = serviceID;
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 
-    public Status getStatus() {
+    public Billing.Status getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(Billing.Status status) {
         this.status = status;
     }
 }

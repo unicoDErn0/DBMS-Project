@@ -4,7 +4,7 @@ public class DoctorUpdateRequest {
 
     private String firstName;
     private String lastName;
-    private String specialization;
+    private String specialty;  // Changed from specialization to specialty
     private String email;
     private String phoneNumber;
 
@@ -26,11 +26,11 @@ public class DoctorUpdateRequest {
     }
 
     public String getSpecialty() {
-        return specialization;
+        return specialty;
     }
 
-    public void setSpecialty(String specialization) {
-        this.specialization = specialization;
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
     }
 
     public String getEmail() {

@@ -1,36 +1,36 @@
 package dev.praneeth.backend.labTest;
 
-import java.util.List;
-
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(path = "/api/v1/labTests")
-public class labTestController {
+@RequestMapping(path = "/api/v1/labtests")
+public class LabTestController {
 
-    private final labTestService labTestService;
+    private final LabTestService labTestService;
 
-    public labTestController(labTestService labTestService) {
+    public LabTestController(LabTestService labTestService) {
         this.labTestService = labTestService;
     }
 
     @GetMapping
-    public List<labTest> getlabTests() {
-        return labTestService.getlabTests();
+    public List<LabTest> getAllLabTests() {
+        return labTestService.getAllLabTests();
     }
 
     @PostMapping
-    public void addlabTest(@RequestBody labTest labTest) {
-        labTestService.addlabTest(labTest);
+    public void addLabTest(@RequestBody LabTest labTest) {
+        labTestService.addLabTest(labTest);
     }
 
     @DeleteMapping(path = "/{labTestId}")
-    public void deletelabTest(@PathVariable("labTestId") Integer labTestId) {
-        labTestService.deletelabTest(labTestId);
+    public void deleteLabTest(@PathVariable("labTestId") Integer labTestId) {
+        labTestService.deleteLabTest(labTestId);
     }
 
     @PutMapping(path = "/{labTestId}")
-    public void updatelabTest(@PathVariable("labTestId") Integer labTestId, @RequestBody labTestUpdateRequest updateRequest) {
-        labTestService.updatelabTest(labTestId, updateRequest);
+    public void updateLabTest(@PathVariable("labTestId") Integer labTestId, @RequestBody LabTestUpdateRequest updateRequest) {
+        labTestService.updateLabTest(labTestId, updateRequest);
     }
 }

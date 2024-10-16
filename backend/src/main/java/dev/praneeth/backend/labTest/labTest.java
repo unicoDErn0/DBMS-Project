@@ -1,31 +1,17 @@
 package dev.praneeth.backend.labTest;
 
-import jakarta.persistence.*;
+public class LabTest {
 
-@Entity
-@Table(name = "lab_tests")
-public class labTest {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer labTestID;
-
-    @Column(name = "name_of_test", nullable = false, length = 100)
     private String nameOfTest;
-
-    @Column(name = "description", length = 500)
     private String description;
-
-    @Column(name = "normal_range", length = 50)
     private String normalRange;
-
-    @Column(name = "units", length = 20)
     private String units;
 
     // Constructors
-    public labTest() {}
+    public LabTest() {}
 
-    public labTest(String nameOfTest, String description, String normalRange, String units) {
+    public LabTest(String nameOfTest, String description, String normalRange, String units) {
         this.nameOfTest = nameOfTest;
         this.description = description;
         this.normalRange = normalRange;
@@ -33,11 +19,11 @@ public class labTest {
     }
 
     // Getters and Setters
-    public Integer getlabTestID() {
+    public Integer getLabTestID() {
         return labTestID;
     }
 
-    public void setlabTestID(Integer labTestID) {
+    public void setLabTestID(Integer labTestID) {
         this.labTestID = labTestID;
     }
 
@@ -71,5 +57,16 @@ public class labTest {
 
     public void setUnits(String units) {
         this.units = units;
+    }
+
+    @Override
+    public String toString() {
+        return "LabTest{" +
+                "labTestID=" + labTestID +
+                ", nameOfTest='" + nameOfTest + '\'' +
+                ", description='" + description + '\'' +
+                ", normalRange='" + normalRange + '\'' +
+                ", units='" + units + '\'' +
+                '}';
     }
 }

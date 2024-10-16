@@ -1,13 +1,12 @@
 package dev.praneeth.backend.labTest;
 
-public class labTestUpdateRequest {
-
+public class LabTestUpdateRequest {
+    
     private String nameOfTest;
     private String description;
     private String normalRange;
     private String units;
 
-    // Getters and Setters
     public String getNameOfTest() {
         return nameOfTest;
     }

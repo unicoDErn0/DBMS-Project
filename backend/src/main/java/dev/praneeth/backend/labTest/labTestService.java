@@ -1,57 +1,51 @@
 package dev.praneeth.backend.labTest;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
-import jakarta.transaction.Transactional;
-
 @Service
-public class labTestService {
+public class LabTestService {
 
-    private final labTestRepository labTestRepository;
+    private final LabTestDao labTestDao;
 
-    public labTestService(labTestRepository labTestRepository) {
-        this.labTestRepository = labTestRepository;
+    public LabTestService(LabTestDao labTestDao) {
+        this.labTestDao = labTestDao;
     }
 
-    public List<labTest> getlabTests() {
-        return labTestRepository.findAll();
+    public List<LabTest> getAllLabTests() {
+        return labTestDao.getAllLabTests();
     }
 
-    public void addlabTest(labTest labTest) {
-        labTestRepository.save(labTest);
+    public void addLabTest(LabTest labTest) {
+        labTestDao.addLabTest(labTest);
     }
 
-    public void deletelabTest(Integer labTestId) {
-        boolean exists = labTestRepository.existsById(labTestId);
-        if (!exists) {
-            throw new IllegalStateException("Lab test with id " + labTestId + " does not exist");
-        }
-        labTestRepository.deleteById(labTestId);
+    public void deleteLabTest(Integer labTestId) {
+        labTestDao.getLabTestById(labTestId)
+                .orElseThrow(() -> new IllegalStateException("LabTest with id " + labTestId + " does not exist"));
+        labTestDao.deleteLabTest(labTestId);
     }
 
     @Transactional
-    public void updatelabTest(Integer labTestId, labTestUpdateRequest updateRequest) {
-        labTest labTest = labTestRepository.findById(labTestId)
-                .orElseThrow(() -> new IllegalStateException("Lab test with id " + labTestId + " does not exist"));
+    public void updateLabTest(Integer labTestId, LabTestUpdateRequest updateRequest) {
+        LabTest labTest = labTestDao.getLabTestById(labTestId)
+                .orElseThrow(() -> new IllegalStateException("LabTest with id " + labTestId + " does not exist"));
 
-        if (updateRequest.getNameOfTest() != null && !updateRequest.getNameOfTest().trim().isEmpty()) {
+        if (updateRequest.getNameOfTest() != null) {
             labTest.setNameOfTest(updateRequest.getNameOfTest());
         }
-
         if (updateRequest.getDescription() != null) {
             labTest.setDescription(updateRequest.getDescription());
         }
-
-        if (updateRequest.getNormalRange() != null && !updateRequest.getNormalRange().trim().isEmpty()) {
+        if (updateRequest.getNormalRange() != null) {
             labTest.setNormalRange(updateRequest.getNormalRange());
         }
-
-        if (updateRequest.getUnits() != null && !updateRequest.getUnits().trim().isEmpty()) {
+        if (updateRequest.getUnits() != null) {
             labTest.setUnits(updateRequest.getUnits());
         }
 
-        labTestRepository.save(labTest);
+        labTestDao.updateLabTest(labTest);
     }
 }
